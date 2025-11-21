@@ -21,7 +21,7 @@ export default function Page() {
         {listaTecnologias.map((tec, i) => (
           <li
             key={i}
-            className="bg-white rounded-2xl shadow p-4 flex gap-4 items-center"
+            className="bg-neutral-800 rounded-2xl shadow p-4 flex gap-4 items-center"
           >
             <Image
               src={`/tecnologias/${tec.image}`}

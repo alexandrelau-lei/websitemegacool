@@ -1,7 +1,7 @@
 [
   {
     "title": "HTML",
-    "image": "html.svg",
+    "image": "html5.svg",
     "description": "Linguagem de marcação usada para estruturar o conteúdo das páginas web.",
     "rating": 4
   },
@@ -13,7 +13,7 @@
   },
   {
     "title": "Tailwind CSS",
-    "image": "tailwind.svg",
+    "image": "tailwindcss.svg",
     "description": "Framework CSS utilitária que acelera a criação de interfaces responsivas.",
     "rating": 5
   },
@@ -55,7 +55,7 @@
   },
   {
     "title": "Next.js",
-    "image": "next.svg",
+    "image": "nextdotjs.svg",
     "description": "Framework React com routing, rendering e otimizações integradas.",
     "rating": 5
   }
