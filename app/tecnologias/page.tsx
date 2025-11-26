@@ -1,46 +1,19 @@
-import Image from "next/image";
-import tecnologias from "@/app/data/tecnologias.json";
+import Link from "next/link";
+import TecnologiaCard from "@/components/TecnologiaCard";
+import tecnologias from "../data/tecnologias.json";
 
-type Tecnologia = {
-  title: string;
-  image: string;
-  description: string;
-  rating: number;
-};
-
-export default function Page() {
-  const listaTecnologias: Tecnologia[] = JSON.parse(
-    JSON.stringify(tecnologias)
-  );
-
+export default function TecnologiasPage() {
   return (
-    <div>
-      <h2>Tecnologias Exploradas</h2>
+    <main className="px-6 py-8">
+      <h1 className="text-3xl font-bold mb-6">Tecnologias Exploradas</h1>
 
-      <ul className="grid gap-4 md:grid-cols-2 mt-4">
-        {listaTecnologias.map((tec, i) => (
-          <li
-            key={i}
-            className="bg-neutral-800 rounded-2xl shadow p-4 flex gap-4 items-center"
-          >
-            <Image
-              src={`/tecnologias/${tec.image}`}
-              alt={`Logotipo de ${tec.title}`}
-              width={80}
-              height={80}
-            />
-
-            <div>
-              <h3 className="font-bold text-lg">{tec.title}</h3>
-              <p>{tec.description}</p>
-              <p className="mt-2 text-sm">
-                <span className="font-semibold">Rating:</span>{" "}
-                {"⭐".repeat(tec.rating)}
-              </p>
-            </div>
-          </li>
+      <section className="grid gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
+        {tecnologias.map((tec, index) => (
+          <Link key={index} href={`/tecnologias/${index}`}>
+            <TecnologiaCard title={tec.title} image={tec.image} />
+          </Link>
         ))}
-      </ul>
-    </div>
+      </section>
+    </main>
   );
 }
