@@ -3,11 +3,13 @@ interface TecnologiaCardProps {
   image: string;
 }
 
+import ContadorPersonalizado from "@/components/ContadorPersonalizado";
+
 export default function TecnologiaCard({ title, image }: TecnologiaCardProps) {
   return (
     <div
       className="
-        w-40 h-48                 /* card com tamanho fixo */
+        w-40 h-48
         flex flex-col items-center justify-center
         bg-white dark:bg-neutral-900
         rounded-xl shadow-md
@@ -22,6 +24,8 @@ export default function TecnologiaCard({ title, image }: TecnologiaCardProps) {
       />
 
       <h3 className="text-center text-sm font-semibold">{title}</h3>
+
+      <ContadorPersonalizado title={title} />
     </div>
   );
 }

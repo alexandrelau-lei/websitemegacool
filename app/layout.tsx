@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import Link from "next/link";
+import Relogio from "@/components/Relogio";
 import "./globals.css";
 
 const data = new Date()
@@ -37,7 +38,10 @@ export default function RootLayout({
             <Link href="/caracteristicas">Características</Link>
             <Link href="/tecnologias">Tecnologias</Link>
             <Link href="/projetos">Projetos</Link>
-
+            <Link href="/contador">Contador</Link>
+            <Link href="/input">Input</Link>
+            <Link href="/produtos">Produtos</Link>
+            <Link href="/categorias">Categorias</Link>
           </nav>
         </header>
 
@@ -46,7 +50,10 @@ export default function RootLayout({
           {children}
         </main>
         
-        <footer>DIW <footer>DIW {data.getFullYear()}</footer></footer>
+        <footer>
+          <Relogio />
+          DIW {data.getFullYear()}
+        </footer>
 
       </body>
     </html>
