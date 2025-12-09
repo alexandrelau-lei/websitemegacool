@@ -3,12 +3,19 @@
 import { useEffect, useState } from "react";
 
 export default function Relogio() {
-  const [agora, setAgora] = useState(new Date());
+  const [hora, setHora] = useState<string | null>(null);
 
   useEffect(() => {
-    const id = setInterval(() => {
-      setAgora(new Date());
-    }, 1000);
+    const atualizar = () => {
+      setHora(
+        new Date().toLocaleTimeString("pt-PT", {
+          hour12: false,
+        })
+      );
+    };
+
+    atualizar();
+    const id = setInterval(atualizar, 1000);
 
     return () => clearInterval(id);
   }, []);
@@ -17,7 +24,7 @@ export default function Relogio() {
     <div className="text-sm text-slate-500">
       Hora atual:{" "}
       <span className="font-mono">
-        {agora.toLocaleTimeString("pt-PT", { hour12: false })}
+        {hora ?? "--:--:--"}
       </span>
     </div>
   );
