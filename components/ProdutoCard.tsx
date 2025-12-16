@@ -4,14 +4,17 @@ import Image from "next/image";
 import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import type { Product } from "@/models/interfaces";
+import React, {useEffect, useState} from "react";
+import { Flavors } from "next/font/google";
 
 interface ProdutoCardProps {
   product: Product;
+  indice: number;
   onAddToCart?: () => void;
   onRemoveFromCart?: () => void;
 }
 
-export function ProductCard({ product, onAddToCart, onRemoveFromCart }: ProdutoCardProps) {
+export function ProductCard({ product, indice, onAddToCart, onRemoveFromCart }: ProdutoCardProps) {
   const numericPrice =
     typeof product.price === "number"
       ? product.price
@@ -21,12 +24,44 @@ export function ProductCard({ product, onAddToCart, onRemoveFromCart }: ProdutoC
     ? product.image
     : `https://deisishop.pythonanywhere.com${product.image}`;
 
+  // alteracao loja ---------------------------------
+  const [favorito, setFavorito] = useState<boolean>(false);
+
+  useEffect(() => {
+    const fav = JSON.parse(localStorage.getItem("favorito") || "[]")
+  ;
+
+  setFavorito(fav.includes(indice));}, [indice]);
+
+
+  function toggleFavorito(e: React.MouseEvent){
+    e.preventDefault();
+    e.stopPropagation();
+
+    const fav = JSON.parse(localStorage.getItem("favoritos") || "[]")
+    let novo;
+
+    if(fav.includes(indice)){
+      novo = fav.filter((i: number) => i !== indice);
+      setFavorito(false);
+    } else {
+      novo = [...fav, indice];
+      setFavorito(true);
+    }
+    localStorage.setItem("Favoritos", JSON.stringify(novo))
+  }
+  //---------------------------------
+  
   return (
     <Card className="flex flex-col h-full justify-between">
       <CardHeader className="items-center pb-2">
         <CardTitle className="text-center text-base md:text-lg line-clamp-2">
           {product.title}
         </CardTitle>
+
+        <button onClick = {toggleFavorito} className="text-xl">
+          {favorito ? "❤️" : "🤍"}
+        </button>
       </CardHeader>
 
       <CardContent className="flex flex-col items-center gap-2 pt-0">
